@@ -1,0 +1,11 @@
+<%- include('header.ejs') %>
+<script src="../Backend/values.js"></script>
+      <form class="container-fluid"action="/youtube"onsubmit="setValues()">
+	<div class="mb-3">
+	  <label for="exampleInputEmail1" class="form-label">Enter your Link</label>
+	  <input type="text" name="fname" class="form-control" id="inputLink" aria-describedby="emailHelp">
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <%- include('footer.ejs') %>
