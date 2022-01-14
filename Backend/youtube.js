@@ -4,13 +4,34 @@ const ytdl = require('ytdl-core');
 // TypeScript: import ytdl from 'ytdl-core'; with --esModuleInterop
 // TypeScript: import * as ytdl from 'ytdl-core'; with --allowSyntheticDefaultImports
 // TypeScript: import ytdl = require('ytdl-core'); with neither of the above
-const getRandom = (ext) => { return `${Math.floor(Math.random() * 10000)}${ext}` }
+let upper = 6
+let lower = 1
+const getRandom = (ext) => { return `${Math.floor(Math.random() * (upper - lower + 1) + lower)}${ext}` }
 
-module.exports.video = async (songname)=>{
-    let info= await ytdl.getInfo(songname);
-    const fileName = 'Public/video.mp4';
-await ytdl(songname,{filter: info => info.container==='mp4'})
- .pipe(fs.createWriteStream(fileName))
- return fileName;
+module.exports.video = async (songname,type)=>{
+    var temp;
+    var videoName;
+    if(type=='video'){
+        temp=getRandom('.mp4');
+        var fileName = 'Public/'+temp;
+        await ytdl.getInfo(songname).then(async d=>{
+            videoName= d.videoDetails.title;
+            console.log("videoka naame=",d.videoDetails.title);
+            await ytdl(songname,{filter: info => info.container==='mp4'})
+            .pipe(fs.createWriteStream(fileName))
+        })       
+    }else{
+        temp=getRandom('.mp3');
+        var fileName = 'Public/'+temp;
+         await ytdl.getInfo(songname).then(async d=>{
+             videoName =d.videoDetails.title;
+             let audioFormats = ytdl.filterFormats(d.formats, 'audioonly');
+           await  ytdl(songname,{filter: audioFormats => audioFormats.audioBitrate==160})
+          .pipe(fs.createWriteStream(fileName));
+         })
+ 
+    }
+ 
+ return {temp,videoName};
 }
  
