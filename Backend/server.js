@@ -55,7 +55,7 @@ app.get('/instaPostDownloader',async (req,res,next)=>{
    const url = req.query.url;
    console.log(url);
    const filename=await insta.instaPost(url);
-   console.log(filename);
-   res.render('getDownload',{fileName:filename.filePath,videoName:filename.fileName,type:'Post'});
+   //console.log("in server .js",filename.filepath);
+   res.render('getDownload',{fileName:filename.filepath,videoName:filename.fileName,type:'Post'});
 })
 app.listen(PORT);
