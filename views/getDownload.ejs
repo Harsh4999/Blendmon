@@ -1,3 +1,4 @@
 <%- include('header.ejs') %>
-  <a href=<%=fileName %> target="blank" download=<%=videoName %>>Download <%=type%></a>
+<%- console.log('here in ejs= ',fileName,videoName,type)%>
+  <a href=<%=fileName %>  download=<%=videoName %>>Download <%=type%></a>
 <%- include('footer.ejs') %>
