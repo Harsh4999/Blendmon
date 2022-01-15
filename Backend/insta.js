@@ -6,8 +6,8 @@ const axios=require('axios');
 // const getRandom = (ext) => { return `${Math.floor(Math.random() * (upper - lower + 1) + lower)}${ext}` }
 module.exports.instadp=async (userNmae)=>{
     console.log(userNmae);
-    var downurl;
-    axios.get(`https://www.instagram.com/${userNmae}/?__a=1`, {
+    let downurl;
+ return  await axios.get(`https://www.instagram.com/${userNmae}/?__a=1`, {
         headers: {
           accept:
             "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -37,8 +37,9 @@ module.exports.instadp=async (userNmae)=>{
         // }).catch((err)=>{
         //      console.log(err);
         // });
+        return downurl;
     }).catch((err)=>{
         console.log(err);
      })
-     return downurl;
+    
 }

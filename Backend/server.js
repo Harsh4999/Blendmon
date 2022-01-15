@@ -37,9 +37,12 @@ app.get('/youtube',async (req,res,next)=>{
    })
  
 });
-app.get('/instaDp',(req,res,next)=>{
+app.get('/instaGram',(req,res,next)=>{
+res.render('instaPage');
+})
+app.get('/instaDp',async(req,res,next)=>{
    const userName=req.query.username;
-   const downUrl = insta.instadp(userName);
-   res.render('getDownload',{downUrl:downUrl});
+   const downUrl = await insta.instadp(userName);
+   res.render('dpDownloader',{downUrl:downUrl,userName:userName});
 })
 app.listen(PORT);
