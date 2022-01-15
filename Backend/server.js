@@ -37,9 +37,15 @@ app.get('/youtube',async (req,res,next)=>{
    })
  
 });
+//For getting instaDp
 app.get('/instaGram',(req,res,next)=>{
 res.render('instaPage');
 })
+//for instaPost
+app.get('/instaPost',(req,res,next)=>{
+res.render('instaPost');
+})
+//instaDPFunction backend
 app.get('/instaDp',async(req,res,next)=>{
    const userName=req.query.username;
    const downUrl = await insta.instadp(userName);
