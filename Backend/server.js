@@ -1,6 +1,7 @@
 const express = require('express');
 const youtube = require('./youtube');
-// const bodyparser = require('body-parser')
+const insta = require('./insta');
+const bodyparser = require('body-parser')
 const path=require('path')
 
 const app = express();
@@ -9,11 +10,11 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, '../Public')));
 const PORT=process.env.PORT||5000;
-//app.use(bodyparser.urlencoded());
+app.use(bodyparser.urlencoded({extended:false}));
 app.get('/',(req,res,next)=>{
+
   res.render('index');
-  // res.render('index')  
- // next();
+
 });
 app.get('/you',(req,res,next)=>{
    res.render('youtube');
@@ -36,4 +37,9 @@ app.get('/youtube',async (req,res,next)=>{
    })
  
 });
+app.get('/instaDp',(req,res,next)=>{
+   const userName=req.query.username;
+   const downUrl = insta.instadp(userName);
+   res.render('getDownload',{downUrl:downUrl});
+})
 app.listen(PORT);
