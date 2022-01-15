@@ -1,6 +1,7 @@
 const express = require('express');
 const youtube = require('./youtube');
 const insta = require('./insta');
+const news = require('./news')
 const bodyparser = require('body-parser')
 const path=require('path')
 
@@ -11,10 +12,9 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, '../Public')));
 const PORT=process.env.PORT||5000;
 app.use(bodyparser.urlencoded({extended:false}));
-app.get('/',(req,res,next)=>{
-
-  res.render('index');
-
+app.get('/',async (req,res,next)=>{
+   const data= await news.getNews();
+   res.render('news',{data:data});
 });
 app.get('/you',(req,res,next)=>{
    res.render('youtube');
@@ -57,5 +57,10 @@ app.get('/instaPostDownloader',async (req,res,next)=>{
    const filename=await insta.instaPost(url);
    //console.log("in server .js",filename.filepath);
    res.render('getDownload',{fileName:filename.filepath,videoName:filename.fileName,type:'Post'});
+})
+
+app.get('/news',async(req,res,next)=>{
+   const data= await news.getNews();
+   res.render('news',{data:data});
 })
 app.listen(PORT);

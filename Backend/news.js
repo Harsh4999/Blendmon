@@ -1,8 +1,9 @@
-//const axios = require('axios');
-const url = "https://news-pvx.herokuapp.com/";
-let latestNews = "TECH NEWS--------";
+const axios = require('axios');
 
-const getNews = async () => {
+module.exports.getNews = async () => {
+    const url = "https://news-pvx.herokuapp.com/";
+    let latestNews = "TECH NEWS--------";
+
     const { data } = await axios.get(url);
     console.log(data);
     let count = 0;
@@ -15,7 +16,3 @@ const getNews = async () => {
     });
     return news;
 };
-const postNews=async()=>{
-	console.log(await getNews());
-};
-postNews();
