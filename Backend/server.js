@@ -43,6 +43,6 @@ res.render('instaPage');
 app.get('/instaDp',async(req,res,next)=>{
    const userName=req.query.username;
    const downUrl = await insta.instadp(userName);
-   res.render('dpDownloader',{downUrl:downUrl,userName:userName});
+   res.render('getDownload',{fileName:downUrl.fileName,videoName:userName,type:'image'});
 })
 app.listen(PORT);

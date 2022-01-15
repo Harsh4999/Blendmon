@@ -1,9 +1,9 @@
 const axios=require('axios');
-// const fs = require('fs');
+const fs = require('fs');
 // const client = require('https');
-// let upper = 6
-// let lower = 1
-// const getRandom = (ext) => { return `${Math.floor(Math.random() * (upper - lower + 1) + lower)}${ext}` }
+let upper = 6
+let lower = 1
+const getRandom = (ext) => { return `${Math.floor(Math.random() * (upper - lower + 1) + lower)}${ext}` }
 module.exports.instadp=async (userNmae)=>{
     console.log(userNmae);
     let downurl;
@@ -32,14 +32,22 @@ module.exports.instadp=async (userNmae)=>{
 	//console.log(res.data.graphql.user.profile_pic_url_hd);
      downurl=(res.data.graphql.user.profile_pic_url_hd);
         console.log(downurl);
-        //  axios.get(downurl, (res) => {
-        //     res.pipe(fs.createWriteStream('a.jpg'));
-        // }).catch((err)=>{
-        //      console.log(err);
-        // });
-        return downurl;
+        const fileName = `${getRandom('.jpg')}`;
+        downloadImage(downurl,`Public/${fileName}`);
+        return {downurl,fileName};
     }).catch((err)=>{
         console.log(err);
      })
-    
+     async function downloadImage(url, filepath) {
+      const response = await axios({
+          url,
+          method: 'GET',
+          responseType: 'stream'
+      });
+      return new Promise((resolve, reject) => {
+          response.data.pipe(fs.createWriteStream(filepath))
+              .on('error', reject)
+              .once('close', () => resolve(filepath)); 
+      });
+  }
 }
