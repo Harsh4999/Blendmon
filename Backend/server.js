@@ -8,7 +8,6 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, '../Public')));
-console.log(__dirname+'/../Public');
 const PORT=5000;
 //app.use(bodyparser.urlencoded());
 app.get('/',(req,res,next)=>{
@@ -30,13 +29,10 @@ app.get('/youtube',async (req,res,next)=>{
   }
   console.log(type);
    const url=req.query.fname;
-   //console.log(req)
-  console.log(url);
    await youtube.video(req.query.fname,type).then((filePath)=>{
       console.log(filePath);
       console.log('Downloaded');
-      res.render('getDownload',{fileName:filePath.temp,videoName:filePath.videoName});
-      //res.sendFile(`/home/harsh/Blendmon/Blendmon/Backend/93971.mp4`);
+      res.render('getDownload',{fileName:filePath.temp,videoName:filePath.videoName,type:type});
    })
  
 });
