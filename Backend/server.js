@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, '../Public')));
-const PORT=5000;
+const PORT=process.env.PORT||5000;
 //app.use(bodyparser.urlencoded());
 app.get('/',(req,res,next)=>{
   res.render('index');
