@@ -14,14 +14,14 @@
     <tbody>
     <% 
 for(let i=0;i<10;i++){ %>
-    <tr class="table-secondary"><td> 🌐 <%=data.inshorts[i]%></td></tr>
+    <tr class="table-secondary"><td class="font-monospace"> 🌐 <%=data.inshorts[i]%></td></tr>
 <%} %>
     </tbody> 
 </table>
 </div>
 
 <div  id="Gadgets-now">
-    <table class="table table">
+    <table class="table table-hover">
         <thead>
             <tr class="text-center">
                 <th class="fs-2">Gadgets-now</th>
@@ -37,7 +37,7 @@ for(let i=0;i<10;i++){ %>
 </div>
 
 <div  id="Techcrunch">
-    <table class="table table">
+    <table class="table table-hover">
         <thead>
             <tr class="text-center">
                 <th class="fs-2">Techcrunch</th>
@@ -46,7 +46,7 @@ for(let i=0;i<10;i++){ %>
         <tbody>
         <% 
     for(let i=0;i<10;i++){ %>
-        <tr class=""><td> 🌐 <%=data.techgig[i]%></td></tr>
+        <tr class="table"><td class="font-monospace"> 🌐 <%=data.techgig[i]%></td></tr>
     <%} %>
         </tbody> 
     </table>
