@@ -1,7 +1,54 @@
 <%- include('header.ejs') %>
-<h1>Hello news dekhlo</h1>
-<% 
+<div>
+    <button type="button" class="btn btn-outline-secondary"><a href="#inshorts" style="text-decoration:none; color:black" >Inshorts</a></button>
+    <button type="button" class="btn btn-outline-secondary"><a href="#Gadgets-now" style="text-decoration:none; color:black">Gadgets-now</a></button>
+    <button type="button" class="btn btn-outline-secondary"><a href="#Techcrunch" style="text-decoration:none; color:black">Techcrunch</a></button>
+</div>
+<div id="inshorts">
+<table class="table table-hover">
+    <thead>
+        <tr class="text-center">
+            <th class="fs-2">Inshorts</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% 
 for(let i=0;i<10;i++){ %>
-    <p> 🌐 <%=data[i]%></p>  
-<%} %> 
+    <tr class="table-secondary"><td class="font-monospace"> 🌐 <%=data.inshorts[i]%></td></tr>
+<%} %>
+    </tbody> 
+</table>
+</div>
+
+<div  id="Gadgets-now">
+    <table class="table table-hover">
+        <thead>
+            <tr class="text-center">
+                <th class="fs-2">Gadgets-now</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% 
+    for(let i=0;i<10;i++){ %>
+        <tr class="table-dark"><td> 🌐 <%=data.techradar[i]%></td></tr>
+    <%} %>
+        </tbody> 
+    </table>
+</div>
+
+<div  id="Techcrunch">
+    <table class="table table-hover">
+        <thead>
+            <tr class="text-center">
+                <th class="fs-2">Techcrunch</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% 
+    for(let i=0;i<10;i++){ %>
+        <tr class="table"><td class="font-monospace"> 🌐 <%=data.techgig[i]%></td></tr>
+    <%} %>
+        </tbody> 
+    </table>
+</div>
 <%- include('footer.ejs') %>
