@@ -9,10 +9,10 @@ module.exports.getNews = async () => {
     let count = 0;
 
     let news = "☆☆☆☆☆💥 Tech News 💥☆☆☆☆☆ \n\n";
-    data["inshorts"].forEach((headline) => {
-        count += 1
-        if (count > 13) return;
-        news = news + "🌐 " + headline + "\n\n";
-    });
-    return news;
+//     data["inshorts"].forEach((headline) => {
+//         count += 1
+//         if (count > 13) return;
+//         news = news + "🌐 " + headline + "\n\n";
+//     });
+    return data["inshorts"];
 };

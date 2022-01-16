@@ -1,4 +1,9 @@
 <%- include('header.ejs') %>
 <h1>Hello news dekhlo</h1>
-    <%=data%>
+<% 
+for(let i=0;i<10;i++){ %>
+
+   <%=data[i]%>
+    <br>
+<%} %> 
 <%- include('footer.ejs') %>
