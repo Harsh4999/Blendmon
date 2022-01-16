@@ -5,14 +5,12 @@ module.exports.getNews = async () => {
     let latestNews = "TECH NEWS--------";
 
     const { data } = await axios.get(url);
- //   console.log(data);
-    let count = 0;
+  // console.log(data);
 
-    let news = "☆☆☆☆☆💥 Tech News 💥☆☆☆☆☆ \n\n";
-//     data["inshorts"].forEach((headline) => {
-//         count += 1
-//         if (count > 13) return;
-//         news = news + "🌐 " + headline + "\n\n";
-//     });
-    return data["inshorts"];
+    const obj = {
+        "inshorts": data["inshorts"],
+        "techradar": data["gadgets-now"],
+        "techgig": data["techcrunch"]
+    }
+    return obj;
 };
