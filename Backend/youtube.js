@@ -17,7 +17,7 @@ module.exports.video = async (songname,type)=>{
         await ytdl.getInfo(songname).then(async d=>{
             videoName= d.videoDetails.title;
             console.log("videoka naame=",d.videoDetails.title);
-            await ytdl(songname,{filter: info => info.container==='mp4'})
+            await ytdl(songname,{filter: info => info.itag == 38 || info.itag == 37 || info.itag== 22 ||info.itage== 83 ||info.itag== 18})
             .pipe(fs.createWriteStream(fileName))
         })       
     }else{
