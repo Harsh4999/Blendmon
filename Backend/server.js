@@ -1,6 +1,7 @@
 const express = require('express');
 const youtube = require('./youtube');
 const insta = require('./insta');
+const news = require('./news')
 const bodyparser = require('body-parser')
 const path=require('path')
 
@@ -11,10 +12,9 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, '../Public')));
 const PORT=process.env.PORT||5000;
 app.use(bodyparser.urlencoded({extended:false}));
-app.get('/',(req,res,next)=>{
-
-  res.render('index');
-
+app.get('/',async (req,res,next)=>{
+   const data= await news.getNews();
+   res.render('news',{data:data});
 });
 app.get('/you',(req,res,next)=>{
    res.render('youtube');
@@ -37,12 +37,35 @@ app.get('/youtube',async (req,res,next)=>{
    })
  
 });
+//For getting instaDp
 app.get('/instaGram',(req,res,next)=>{
 res.render('instaPage');
 })
+//for instaPost
+app.get('/instaPost',(req,res,next)=>{
+res.render('instaPost');
+})
+//instaDPFunction backend
 app.get('/instaDp',async(req,res,next)=>{
    const userName=req.query.username;
    const downUrl = await insta.instadp(userName);
    res.render('getDownload',{fileName:downUrl.fileName,videoName:userName,type:'image'});
+})
+app.get('/instaPostDownloader',async (req,res,next)=>{
+   const url = req.query.url;
+   console.log(url);
+   const filename=await insta.instaPost(url);
+   if(filename==null){
+      res.render('404');
+   }else{
+      res.render('getDownload',{fileName:filename.filepath,videoName:filename.fileName,type:'Post'});
+   }
+   //console.log("in server .js",filename.filepath);
+   
+})
+
+app.get('/news',async(req,res,next)=>{
+   const data= await news.getNews();
+   res.render('news',{data:data});
 })
 app.listen(PORT);
