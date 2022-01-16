@@ -14,5 +14,11 @@ module.exports.getNews = async () => {
 //         if (count > 13) return;
 //         news = news + "🌐 " + headline + "\n\n";
 //     });
-    return data["inshorts"];
+    // return data["inshorts"];
+    const obj = {
+        "inshorts": data["inshorts"],
+        "techradar": data["gadgets-now"],
+        "techgig": data["techcrunch"]
+    }
+    return obj;
 };
