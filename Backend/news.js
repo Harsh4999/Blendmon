@@ -5,7 +5,7 @@ module.exports.getNews = async () => {
     let latestNews = "TECH NEWS--------";
 
     const { data } = await axios.get(url);
-    console.log(data);
+ //   console.log(data);
     let count = 0;
 
     let news = "☆☆☆☆☆💥 Tech News 💥☆☆☆☆☆ \n\n";

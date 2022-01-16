@@ -53,7 +53,9 @@ module.exports.instadp=async (userNmae)=>{
 }
 module.exports.instaPost = async (postUrl)=>{
   let downUrl;
-  return await axios.get(postUrl+'?__a=1', {
+  const ext=postUrl.split('/')
+  const trimext=ext[4];
+  return await axios.get(`https://www.instagram.com/p/${trimext}?__a=1`, {
     headers: {
       accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -92,8 +94,8 @@ module.exports.instaPost = async (postUrl)=>{
     }
     return {filepath,fileName};
   }).catch(err=>{
-    console.log(err);
-  });
+    return null;
+    });
     async function download(url, filepath) {
       const response = await axios({
           url,
