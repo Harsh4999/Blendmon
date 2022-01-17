@@ -32,8 +32,13 @@ app.get('/youtube',async (req,res,next)=>{
    const url=req.query.fname;
    await youtube.video(req.query.fname,type).then((filePath)=>{
       console.log(filePath);
-      console.log('Downloaded');
-      res.render('getDownload',{fileName:filePath.temp,videoName:filePath.videoName,type:type});
+      if(filePath.temp==null||filePath.videoName==null){
+         res.render('404');
+      }else{
+         console.log('Downloaded');
+         res.render('getDownload',{fileName:filePath.temp,videoName:filePath.videoName,type:type});
+      }
+      
    })
  
 });
@@ -49,7 +54,13 @@ res.render('instaPost');
 app.get('/instaDp',async(req,res,next)=>{
    const userName=req.query.username;
    const downUrl = await insta.instadp(userName);
-   res.render('getDownload',{fileName:downUrl.fileName,videoName:userName,type:'image'});
+   if(downUrl==null){
+      res.render('404');
+   }else{
+      res.render('getDownload',{fileName:downUrl.fileName,videoName:userName,type:'image'});
+   }
+
+   
 })
 app.get('/instaPostDownloader',async (req,res,next)=>{
    const url = req.query.url;

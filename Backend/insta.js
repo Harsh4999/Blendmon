@@ -36,7 +36,7 @@ module.exports.instadp=async (userNmae)=>{
         downloadImage(downurl,`Public/${fileName}`);
         return {downurl,fileName};
     }).catch((err)=>{
-        console.log(err);
+        return null;
      })
      async function downloadImage(url, filepath) {
       const response = await axios({

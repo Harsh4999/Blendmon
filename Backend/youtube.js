@@ -19,6 +19,9 @@ module.exports.video = async (songname,type)=>{
             console.log("videoka naame=",d.videoDetails.title);
             await ytdl(songname,{filter: info => info.itag == 38 || info.itag == 37 || info.itag== 22 ||info.itage== 83 ||info.itag== 18})
             .pipe(fs.createWriteStream(fileName))
+        }).catch(err=>{
+            temp=null;
+            videoName=null;
         })       
     }else{
         temp=getRandom('.mp3');
@@ -28,6 +31,9 @@ module.exports.video = async (songname,type)=>{
              let audioFormats = ytdl.filterFormats(d.formats, 'audioonly');
            await  ytdl(songname,{filter: audioFormats => audioFormats.audioBitrate==160})
           .pipe(fs.createWriteStream(fileName));
+         }).catch(err=>{
+             temp=null;
+             videoName=null;
          })
  
     }
