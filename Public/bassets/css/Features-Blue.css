@@ -1,8 +1,10 @@
 .features-blue {
   color: #fff;
-  background: linear-gradient(135deg, #172a74, #21a9af);
-  background-color: #184e8e;
-  padding-bottom: 30px;
+  background: linear-gradient(
+355deg
+, #75667a94, #28313a);
+  background-color: #260c22;
+  padding-bottom: 30px
 }
 
 @media (max-width:767px) {
