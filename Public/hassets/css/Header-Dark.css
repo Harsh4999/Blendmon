@@ -1,12 +1,12 @@
 .header-dark {
   background: url(../../hassets/img/mountain_bg.jpg) #444;
   background-size: cover;
-  padding-bottom: 0px;
+  padding-bottom: 80px;
 }
 
 @media (min-width:768px) {
   .header-dark {
-    padding-bottom: 0px;
+    padding-bottom: 120px;
   }
 }
 
