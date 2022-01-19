@@ -19,6 +19,9 @@ app.get('/',async (req,res,next)=>{
 app.get('/you',(req,res,next)=>{
    res.render('youtube');
 })
+app.get('/horo',(req,res,next)=>{
+   res.render('horoscope');
+})
 app.get('/youtube',async (req,res,next)=>{
   // const songName = req.params.name;
   console.log(req.query);
