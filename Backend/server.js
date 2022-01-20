@@ -14,10 +14,13 @@ const PORT=process.env.PORT||5000;
 app.use(bodyparser.urlencoded({extended:false}));
 app.get('/',async (req,res,next)=>{
    const data= await news.getNews();
-   res.render('news',{data:data});
+   res.render('index',{data:data});
 });
 app.get('/you',(req,res,next)=>{
    res.render('youtube');
+})
+app.get('/horo',(req,res,next)=>{
+   res.render('horoscope');
 })
 app.get('/youtube',async (req,res,next)=>{
   // const songName = req.params.name;
@@ -32,8 +35,13 @@ app.get('/youtube',async (req,res,next)=>{
    const url=req.query.fname;
    await youtube.video(req.query.fname,type).then((filePath)=>{
       console.log(filePath);
-      console.log('Downloaded');
-      res.render('getDownload',{fileName:filePath.temp,videoName:filePath.videoName,type:type});
+      if(filePath.temp==null||filePath.videoName==null){
+         res.render('404');
+      }else{
+         console.log('Downloaded');
+         res.render('getDownload',{fileName:filePath.temp,videoName:filePath.videoName,type:type});
+      }
+      
    })
  
 });
@@ -49,7 +57,13 @@ res.render('instaPost');
 app.get('/instaDp',async(req,res,next)=>{
    const userName=req.query.username;
    const downUrl = await insta.instadp(userName);
-   res.render('getDownload',{fileName:downUrl.fileName,videoName:userName,type:'image'});
+   if(downUrl==null){
+      res.render('404');
+   }else{
+      res.render('getDownload',{fileName:downUrl.fileName,videoName:userName,type:'image'});
+   }
+
+   
 })
 app.get('/instaPostDownloader',async (req,res,next)=>{
    const url = req.query.url;

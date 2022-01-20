@@ -1,7 +1,12 @@
 .footer-dark {
   padding: 50px 0;
-  color: #f0f9ff;
-  background-color: #282d32;
+  color: #fff;
+  background: linear-gradient(
+180deg
+, #75667a94, #28313a);
+  background-color: #260c22;
+  padding-bottom: 30px
+ 
 }
 
 .footer-dark h3 {

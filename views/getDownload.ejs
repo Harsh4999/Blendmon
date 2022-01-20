@@ -1,4 +1,8 @@
 <%- include('header.ejs') %>
 <!-- <%- console.log('here in ejs= ',fileName,videoName,type)%> -->
-  <a href=<%=fileName %>  download=<%=videoName %>>Download <%=type%></a>
-<%- include('footer.ejs') %>
+<div class="text-center container-fluid">  
+  <button type="button" class="btn btn-outline-secondary"><a style="text-decoration:none; color:black"  href=<%=fileName %> download=<%=videoName %>>Download <%=type%></a></button>
+</div>
+
+  
+<%- include('footerSimple.ejs') %>
