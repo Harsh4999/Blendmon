@@ -15,7 +15,7 @@ const PORT=process.env.PORT||5000;
 app.use(bodyparser.urlencoded({extended:false}));
 app.get('/',async (req,res,next)=>{
   // const data= await news.getNews();
-   res.render('index',{data:data});
+   res.render('index');
 });
 app.get('/you',(req,res,next)=>{
    res.render('youtube');
