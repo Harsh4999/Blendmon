@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, '../Public')));
 const PORT=process.env.PORT||5000;
 app.use(bodyparser.urlencoded({extended:false}));
 app.get('/',async (req,res,next)=>{
-   const data= await news.getNews();
+  // const data= await news.getNews();
    res.render('index',{data:data});
 });
 app.get('/you',(req,res,next)=>{
