@@ -25,7 +25,9 @@
     "express": "^4.17.2",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
-    "nodemon": "^2.0.15",
-    "ytdl-core": "^4.9.2"
+    "ytdl-core": "^4.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

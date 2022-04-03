@@ -30,7 +30,7 @@ module.exports.video = async (songname,type)=>{
              videoName =d.videoDetails.title;
              let audioFormats = ytdl.filterFormats(d.formats, 'audioonly');
            await  ytdl(songname,{filter: audioFormats => audioFormats.audioBitrate==160})
-          .pipe(fs.createWriteStream(fileName));
+          .pipe(await fs.createWriteStream(fileName));
          }).catch(err=>{
              temp=null;
              videoName=null;
