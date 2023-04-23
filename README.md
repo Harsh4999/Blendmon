@@ -1,3 +1,2 @@
 # BlendMon
-Cooking Somethiing Fishy
-http://blendmon.herokuapp.com/
+An Ad-free Video downloading application. 
